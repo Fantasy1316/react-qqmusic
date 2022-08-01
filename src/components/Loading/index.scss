@@ -1,0 +1,13 @@
+.loading {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #8f8f8f;
+
+  .icon-loading {
+    margin-right: 6px;
+    font-size: 22px;
+  }
+}

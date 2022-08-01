@@ -1,0 +1,14 @@
+.history-control {
+  .iconfont {
+    font-size: 14px;
+    color: #6e6e6e;
+
+    &:first-child {
+      margin-right: 12px;
+    }
+
+    &:hover {
+      color: var(--app-primary-color);
+    }
+  }
+}

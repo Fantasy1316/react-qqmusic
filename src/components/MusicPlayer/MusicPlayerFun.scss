@@ -1,0 +1,228 @@
+.music-player-fun {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .fun-item {
+    &:not(:last-child) {
+      margin-right: 14px;
+    }
+
+    .iconfont {
+      &:hover {
+        color: var(--app-primary-color);
+      }
+    }
+
+    &--time {
+      font-size: 12px;
+      color: #333;
+    }
+
+    &--volume {
+      font-size: 12px;
+      color: #333;
+    }
+
+    &--lyric {
+      .iconfont {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        transform: scale(0.9);
+      }
+    }
+
+    &--list {
+      display: flex;
+
+      .iconfont {
+        display: block;
+        margin-right: 3px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .list-count {
+        position: relative;
+        top: 2px;
+        font-size: 12px;
+        transform: scale(0.9);
+      }
+    }
+  }
+}
+
+// 气泡弹窗样式修改
+.ant-popover-inner {
+  border-radius: 5px;
+
+  .ant-popover-title {
+    min-width: 0;
+    min-height: 0;
+    padding: 12px 4px 2px;
+  }
+
+  .ant-popover-inner-content {
+    padding: 2px;
+    text-align: center;
+  }
+}
+
+// 抽屉样式修改
+.ant-drawer {
+  .ant-drawer-body {
+    padding: 0;
+  }
+}
+
+// 音量控制器样式
+.volume-title {
+  &--progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    height: 50px;
+    width: 2px;
+    margin: 0 auto 5px;
+    background-color: #ccc;
+
+    &_content {
+      height: 50%;
+      width: 2px;
+      background-color: var(--app-primary-color);
+    }
+
+    &_indicator {
+      position: absolute;
+      left: 0;
+      bottom: 50%;
+      width: 5px;
+      height: 5px;
+      background-color: var(--app-primary-color);
+      border-radius: 5px;
+      transform: translate(-1.5px, 50%);
+    }
+  }
+  &--num {
+    font-size: 12px;
+    transform: scale(0.7);
+  }
+}
+
+.volume-content {
+  .iconfont {
+    font-size: 16px;
+
+    &:hover {
+      color: var(--app-primary-color);
+    }
+  }
+}
+
+// 播放列表样式
+.music-play-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .list-header {
+    padding: 12px 12px 10px;
+
+    &--title {
+      font-size: 18px;
+    }
+
+    &--fun {
+      display: flex;
+      font-size: 12px;
+      color: #777777;
+
+      &_item {
+        &:not(:last-child) {
+          margin-right: 14px;
+        }
+        &:not(:first-child) {
+          &:hover {
+            color: var(--app-primary-color);
+          }
+        }
+
+        .iconfont {
+          font-size: 12px;
+        }
+      }
+
+      .item-total {
+        flex: 1;
+        color: #000;
+      }
+    }
+  }
+
+  .list-body {
+    flex: 1;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      background-color: transparent;
+    }
+
+    &--item {
+      display: flex;
+      position: relative;
+      padding: 10px 10px 8px;
+      box-sizing: border-box;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: -50%;
+        right: -50%;
+        border-bottom: 1px solid #ececec;
+        transform: scale(0.5);
+      }
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+
+      &_current {
+        padding-left: 8px;
+        color: var(--app-primary-color);
+        border-left: 2px solid var(--app-primary-color);
+      }
+
+      .item-cover {
+        width: 34px;
+        height: 34px;
+        margin-right: 8px;
+        border-radius: 3px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .item-infos {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &--name {
+          font-size: 12px;
+        }
+
+        &--singer {
+          font-size: 12px;
+          transform: scale(0.8);
+          transform-origin: left center;
+        }
+      }
+    }
+  }
+}

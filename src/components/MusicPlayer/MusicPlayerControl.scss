@@ -1,0 +1,43 @@
+.music-player-control {
+  display: flex;
+  align-items: center;
+
+  .control-like {
+    .icon-like1 {
+      font-size: 16px;
+
+      &:hover {
+        color: var(--app-primary-color);
+      }
+    }
+  }
+
+  .control-core {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+
+    .icon-play-filling,
+    .icon-zanting {
+      margin: 0 8px;
+      font-size: 36px;
+      color: var(--app-primary-color);
+    }
+
+    .icon-skipprevious,
+    .icon-skip-next {
+      font-size: 28px;
+      &:hover {
+        color: var(--app-primary-color);
+      }
+    }
+  }
+
+  .control-type {
+    font-size: 16px;
+
+    .iconfont:hover {
+      color: var(--app-primary-color);
+    }
+  }
+}
