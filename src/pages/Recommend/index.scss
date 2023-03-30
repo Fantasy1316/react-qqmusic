@@ -1,127 +1,133 @@
 .recommend {
-  flex: 1;
-  height: 100%;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-    background-color: transparent;
-  }
+	flex: 1;
+	height: 100%;
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+		width: 5px;
+		height: 5px;
+		background-color: transparent;
+	}
 
-  &-title {
-    padding: 10px 40px 20px;
-    font-size: 26px;
-    font-weight: 500;
-  }
+	&-title {
+		padding: 10px 40px 20px;
+		font-size: 26px;
+		font-weight: 500;
+	}
 
-  &-order {
-    &--title {
-      padding: 10px 40px;
-      font-size: 18px;
-    }
+	&-order {
+		&--title {
+			padding: 10px 40px;
+			font-size: 18px;
+		}
 
-    &--list {
-      display: flex;
-      align-items: center;
+		&--list {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
 
-      .list {
-        flex: 1;
-        flex-wrap: nowrap;
-        overflow-x: scroll;
-        &::-webkit-scrollbar {
-          display: none;
-        }
+			.list {
+				flex: 1;
+				flex-wrap: nowrap;
+				overflow-x: scroll;
+				&::-webkit-scrollbar {
+					display: none;
+				}
 
-        &-item {
-          &--cover {
-            position: relative;
-            top: 8px;
-            width: 100%;
-            margin-bottom: 14px;
-            border-radius: 6px;
-            overflow: hidden;
-            transition: all 0.3s ease;
+				&-item {
+					&--cover {
+						position: relative;
+						top: 8px;
+						width: 100%;
+						margin-bottom: 14px;
+						border-radius: 6px;
+						overflow: hidden;
+						transition: all 0.3s ease;
 
-            img {
-              width: 100%;
-              border-radius: 6px;
-            }
+						img {
+							width: 100%;
+							border-radius: 6px;
+						}
 
-            .cover-mask {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              transition: all 0.2s ease;
-            }
+						.cover-mask {
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+							transition: all 0.2s ease;
+						}
 
-            .icon-play-filling {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              font-size: 38px;
-              color: transparent;
-              transform: translate(-50%, -50%);
-              transition: all 0.2s ease;
+						.icon-play-filling {
+							position: absolute;
+							top: 50%;
+							left: 50%;
+							font-size: 38px;
+							color: transparent;
+							transform: translate(-50%, -50%);
+							transition: all 0.2s ease;
 
-              &:hover {
-                color: var(--app-primary-color) !important;
-              }
-            }
+							&:hover {
+								color: var(--app-primary-color) !important;
+							}
+						}
 
-            .cover-num {
-              position: absolute;
-              right: 10px;
-              bottom: 10px;
-              display: flex;
-              align-items: center;
-              padding: 6px 10px;
-              font-size: 12px;
-              color: #fff;
-              background-color: rgba(0, 0, 0, 0.8);
-              border-radius: 20px;
-              transform: scale(0.8);
-              transform-origin: right bottom;
-              opacity: 1;
-              transition: all 0.3s ease;
+						.cover-num {
+							position: absolute;
+							right: 10px;
+							bottom: 10px;
+							display: flex;
+							align-items: center;
+							padding: 6px 10px;
+							font-size: 12px;
+							color: #fff;
+							background-color: rgba(0, 0, 0, 0.8);
+							border-radius: 20px;
+							transform: scale(0.8);
+							transform-origin: right bottom;
+							opacity: 1;
+							transition: all 0.3s ease;
 
-              .icon-18erji-2 {
-                padding-right: 3px;
-                font-size: 12px;
-              }
-            }
+							.icon-18erji-2 {
+								padding-right: 3px;
+								font-size: 12px;
+							}
+						}
 
-            &:hover {
-              top: 0px;
+						&:hover {
+							top: 0px;
 
-              .cover-mask {
-                background-color: rgba(0, 0, 0, 0.5);
-              }
+							.cover-mask {
+								background-color: rgba(0, 0, 0, 0.5);
+							}
 
-              .icon-play-filling {
-                color: #fff;
-              }
+							.icon-play-filling {
+								color: #fff;
+							}
 
-              .cover-num {
-                opacity: 0;
-              }
-            }
-          }
+							.cover-num {
+								opacity: 0;
+							}
+						}
+					}
 
-          &--title {
-            line-height: 16px;
-            font-size: 12px;
-          }
-        }
-      }
+					&--title {
+						line-height: 16px;
+						font-size: 12px;
+						display: -webkit-box;
+						text-overflow: ellipsis;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 2;
+						overflow: hidden;
+					}
+				}
+			}
 
-      .icon-arrowleft,
-      .icon-arrowright {
-        padding: 7px;
-        font-size: 28px;
-        color: #7c7c7c;
-      }
-    }
-  }
+			.icon-arrowleft,
+			.icon-arrowright {
+				padding: 7px;
+				font-size: 28px;
+				color: #7c7c7c;
+			}
+		}
+	}
 }

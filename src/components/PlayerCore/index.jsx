@@ -1,71 +1,75 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { songUrls } from '../../api'
+import { songUrl } from '../../api'
 import { setCurrentSong } from '../../redux/action/currentSong'
 
 export default function PlayerCore() {
-  const playerRef = useRef(null)
+	const [currentSongUrl, setCurrentSongUrl] = useState('')
+	const playerRef = useRef(null)
+	const { player, playList, currentSong } = useSelector((state) => state)
+	const dispatch = useDispatch()
 
-  const { player, playList, currentSong } = useSelector((state) => {
-    return state
-  })
+	// 控制播放器播放/暂停
+	const handlePlayerChange = () => {
+		const { status, mute } = player
 
-  const dispatch = useDispatch()
+		if (status) {
+			playerRef.current.play()
+		} else {
+			playerRef.current.pause()
+		}
 
-  // 当前播放歌曲链接
-  const currentSongUrl = () => {
-    return playList[currentSong.index]?.song_url
-  }
+		playerRef.current.muted = mute
+	}
 
-  // 控制播放器播放/暂停
-  const handlePlayerChange = () => {
-    const { status, mute } = player
+	// 获取歌曲详情
+	const getSongUrl = async () => {
+		if (!currentSong.mid) return
+		const result = await songUrl({ id: currentSong.mid })
 
-    if (status) {
-      playerRef.current.play()
-    } else {
-      playerRef.current.pause()
-    }
+		if (result && result.code === 200) {
+			const { data = [] } = result
+			const url = data[0]?.url
+			console.log(data[0])
+			setCurrentSongUrl(url)
+		}
+	}
 
-    playerRef.current.muted = mute
-  }
+	useEffect(() => {
+		getSongUrl()
+		handlePlayerChange()
 
-  // 获取歌曲详情
-  const getSongDetail = async () => {
-    if (!currentSong.mid) return
-    const result = await songUrls({ songmid: currentSong.mid })
-  }
+		// 监听歌曲可以播放
+		playerRef.current.addEventListener('canplay', (e) => {
+			// 更新当前歌曲时间
+			const { duration } = e.target
+			dispatch(setCurrentSong({ duration }))
 
-  useEffect(() => {
-    getSongDetail()
-    handlePlayerChange()
+			// 如果当前为播放状态，直接播放歌曲
+			if (player.status) {
+				playerRef.current.play()
+			}
+		})
 
-    // 监听歌曲可以播放
-    playerRef.current.addEventListener('canplay', (e) => {
-      // 更新当前歌曲时间
-      const { duration } = e.target
-      dispatch(setCurrentSong({ duration }))
+		const timer = setInterval(() => {
+			/** 待优化  */
+			const current = playerRef.current.currentTime
+			if (player.status) {
+				dispatch(setCurrentSong({ current }))
+			}
+		}, 500)
 
-      // 如果当前为播放状态，直接播放歌曲
-      if (player.status) {
-        playerRef.current.play()
-      }
-    })
+		return () => clearInterval(timer)
+	}, [player])
 
-    const timer = setInterval(() => {
-      /** 代优化  */
-      const current = playerRef.current.currentTime
-      if (player.status) {
-        dispatch(setCurrentSong({ current }))
-      }
-    }, 500)
-
-    return () => clearInterval(timer)
-  }, [player])
-
-  return (
-    <div>
-      <audio ref={playerRef} src={currentSongUrl()}></audio>
-    </div>
-  )
+	return (
+		<div>
+			{/* <audio ref={playerRef} controls src={currentSongUrl}></audio> */}
+			<audio ref={playerRef}>
+				<source src={currentSongUrl} type='audio/ogg' />
+				<source src={currentSongUrl} type='audio/mpeg' />
+				Your browser does not support the audio element.
+			</audio>
+		</div>
+	)
 }
